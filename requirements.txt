@@ -1,0 +1,12 @@
+anthropic
+voyageai
+numpy
+openpyxl
+httpx
+feedparser
+selenium
+beautifulsoup4
+pandas
+requests
+h3
+pywin32

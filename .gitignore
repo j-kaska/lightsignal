@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# LightSignal generated files — do not commit
+data/raw/inputs/
+data/processed/
+data/archive/
+data/articles/staging/seen_urls.json
+data/articles/staging/duplicate_cache.json
+data/articles/logs/
+output/archive/
+scripts/kml/deckgl_bundle.js
+
+# Keep staging structure but not contents
+!data/articles/staging/.gitkeep
+
+# Claude Code local config
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightSignal — Feb 25 – Mar 3, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d0d1a;
+    color: #ddd;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .nl-header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #13132a 60%, #0d0d1a 100%);
+    border-bottom: 1px solid #252540;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .logo-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #E0FF00;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-sub {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .date-range {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.3px;
+  }
+  .date-label {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  /* ── Layout ── */
+  .nl-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── Section ── */
+  .nl-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .section-header {
+    border-left: 3px solid #E0FF00;
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E0FF00;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .section-subtitle {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Story Cards ── */
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .story-card {
+    background: #161628;
+    border: 1px solid #252540;
+    border-radius: 8px;
+    padding: 18px 20px 14px;
+    transition: border-color 0.15s;
+  }
+  .story-card:hover {
+    border-color: #3a3a5a;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .rank {
+    font-size: 13px;
+    font-weight: 700;
+    color: #E0FF00;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .pub-date {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .score-pill {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    background: #1a1a10;
+    border: 1px solid #E0FF0044;
+    border-radius: 20px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .score-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #E0FF00;
+    line-height: 1;
+  }
+  .score-max {
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+  }
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .story-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+  .story-title:hover {
+    color: #E0FF00;
+  }
+  .story-summary {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #1e1e30;
+  }
+  .score-breakdown {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── DC Mini List ── */
+  .dc-list {
+    background: #0f0f20;
+    border: 1px solid #1e1e35;
+    border-radius: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .dc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 14px;
+    border-bottom: 1px solid #1a1a30;
+  }
+  .dc-row:last-child {
+    border-bottom: none;
+  }
+  .dc-row::before {
+    content: "⬡";
+    color: #E0FF00;
+    font-size: 10px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .dc-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bbb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+  .dc-meta {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Empty state ── */
+  .empty-notice {
+    color: #444;
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  /* ── Footer ── */
+  .nl-footer {
+    border-top: 1px solid #1a1a2e;
+    margin-top: 20px;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E0FF00;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .footer-meta {
+    font-size: 10px;
+    color: #333;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-right { text-align: left; }
+    .dc-row { flex-direction: column; gap: 2px; }
+    .dc-meta { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nl-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="14,1 26,8 26,24 14,31 2,24 2,8" fill="none" stroke="#E0FF00" stroke-width="2"/>
+      <polygon points="14,7 21,11 21,21 14,25 7,21 7,11" fill="#E0FF00" fill-opacity="0.15" stroke="#E0FF00" stroke-width="1"/>
+    </svg>
+      <div class="logo-text-group">
+        <span class="logo-name">LightSignal</span>
+        <span class="logo-sub">Lightpath Market Intel</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-label">Week of</div>
+      <div class="date-range">Feb 25 – Mar 3, 2026</div>
+    </div>
+  </div>
+</header>
+
+<main class="nl-body">
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">Top Data Center Stories</h2>
+      <p class="section-subtitle">DC-tagged stories scoring ≥ 7/10 from the past 7 days</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Heath breaks ground on Microsoft data center expected to bring hundreds of jobs - ABC 6</a>
+      <p class="story-summary">Heath marked the start of construction on a new Microsoft data center during a groundbreaking ceremony, with the facility expected to bring hundreds of jobs to the area. The data center project represents significant infrastructure investment in the region and will support Microsoft's expanding computational and cloud services capacity.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Microsoft - Heath</span><span class="dc-meta">Microsoft &middot; Heath, OH &middot; 388 MW</span></div><div class="dc-row"><span class="dc-name">Microsoft Azure: Hebron, OH</span><span class="dc-meta">Microsoft &middot; Hebron, OH &middot; 342 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 26, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://insideclimatenews.org/news/26022026/new-jersey-data-center-tax-break/" target="_blank" rel="noopener" class="story-title">Amid Affordability Crisis, New Jersey Hands $250 Million Tax Break to Data Center</a>
+      <p class="story-summary">New Jersey approved a $250 million tax incentive for CoreWeave, a Livingston-based computing company, to build a 392,600-square-foot AI data center in Kenilworth valued at approximately $1.8 billion. The performance-based tax credits total $50 million annually over five years as part of the state's Next New Jersey AI program, contingent on CoreWeave creating 143 jobs and maintaining operations for a decade. The facility is expected to require up to 250 megawatts of power upon completion, with construction underway and operations targeted to begin in early 2027.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Coreweave: 11 NEST</span><span class="dc-meta">Coreweave &middot; Kenilworth, NJ &middot; 17 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2210;border-color:#F39C12;color:#f0b429">M&A & Capital Markets</span>
+          <span class="pub-date">Feb 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Lenders passed on financing for Lancaster city data centers: report | Local Business</a>
+      <p class="story-summary">A partner in the Lancaster city data centers project failed to secure lender and investor commitments for a planned $4 billion financing round, according to a recent report. The inability to attract capital for the development signals potential challenges in funding large-scale data center infrastructure projects in the Lancaster market.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">CoreWeave Lancaster 1</span><span class="dc-meta">Chirisa Technology Parks and Machine Investment Group &middot; Lancaster, PA &middot; 45 MW</span></div><div class="dc-row"><span class="dc-name">CoreWeave Lancaster 2</span><span class="dc-meta">Chirisa Technology Parks and Machine Investment Group &middot; Lancaster, PA &middot; 50 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.newsobserver.com/news/business/article314823470.html" target="_blank" rel="noopener" class="story-title">Microsoft plans new data center on NC site north of Triangle | Raleigh News & Observer</a>
+      <p class="story-summary">Microsoft confirmed plans to develop a hyperscale data center on a 1,350-acre megasite in Person County, North Carolina, which it purchased for approximately $27 million in October 2024, with permitting expected to begin in 2024. The facility represents a shift in the company's regional strategy after scaling back a $1 billion commitment for four data centers in Catawba County. Microsoft pledged to manage environmental impacts by not raising local electricity prices and replenishing more water than it consumes at the site, addressing concerns about resource consumption that have prompted community opposition to data center projects across North Carolina.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Microsoft - Roxboro</span><span class="dc-meta">Microsoft &middot; nan, NC &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Feb 26, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.chestnuthilllocal.com/stories/east-vincent-planning-commission-votes-against-pennhurst-data-center-plan,39888?" target="_blank" rel="noopener" class="story-title">East Vincent Planning Commission votes against Pennhurst data center plan</a>
+      <p class="story-summary">East Vincent Township's Planning Commission voted against recommending approval of Pennhurst Holdings LLC's proposed 1.3 million square-foot data center at the former Pennhurst State School and Hospital site on February 17, citing the application as "significantly technically deficient" and non-compliant with zoning ordinances. The developer, Derek Strine, failed to appear at the hearing but submitted a last-minute letter requesting a favorable vote and indicating plans to submit revised applications before a March 16 conditional-use hearing before the board of supervisors. Commissioners criticized the application's lack of detailed information on water impact, environmental effects, electricity, and employment while noting the proposed facility is five times larger than zoning permits. The project faces opposition from residents concerned about noise, traffic, property values, water availability, and potential ground contamination near the Schuylkill River.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Pennhurst Center</span><span class="dc-meta">Pennhurst Holdings LLC &middot; Spring City (East Vincent Township), PA &middot; 80 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 3, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.reuters.com/technology/amazon-data-center-unit-acquires-george-washington-university-virginia-campus-2026-03-02/" target="_blank" rel="noopener" class="story-title">Amazon data center unit acquires George Washington University Virginia campus | Reuters</a>
+      <p class="story-summary">Amazon Data Services is acquiring George Washington University's Virginia Science and Technology campus in Ashburn for $427 million to build a data or information technology center, supporting the company's rapid AI infrastructure expansion. The acquisition aligns with Amazon's 2023 commitment to invest $35 billion by 2040 in Virginia data centers, supplementing the $35 billion already deployed in northern Virginia through 2020. The university will retain an option to maintain programs at the site for up to five years and plans to use proceeds to address structural financial deficits.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">GWU Virginia Science & Technology Campus</span><span class="dc-meta">Amazon &middot; Ashburn, VA &middot; 205 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Feb 28, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.sierraclub.org/new-jersey/blog/2026/02/sierra-club-sustain-south-jersey-and-local-farmers-oppose-massive-vineland" target="_blank" rel="noopener" class="story-title">Sierra Club, Sustain South Jersey, and Local Farmers Oppose Massive Vineland Data ...</a>
+      <p class="story-summary">The Vineland Planning Board approved a 2.4 million-square-foot, 300 MW AI data center in June 2024 developed by DataOne for Nebius Group to support Microsoft's $17 billion infrastructure deal, featuring six server buildings powered by 36 on-site natural gas generators with 403 MW capacity plus an LNG storage tank. Environmental groups including the Sierra Club and Sustain South Jersey have opposed the project citing concerns over depletion of the Kirkwood-Cohansey aquifer serving over one million residents, proximity to wetlands and farmland, and emissions from constant gas generator operations near residential communities. The hyperscale facility in South Jersey represents one of the largest data centers in the Northeast and could expand into a gigawatt-scale campus with multiple tenants.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Nebius Data Center</span><span class="dc-meta">Nebius &middot; Vineland, NJ &middot; 300 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Feb 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Creek concerns near Meta data center site in Beaver Dam | News | wkow.com</a>
+      <p class="story-summary">A creek running through a residential property near Meta's proposed data center site in Beaver Dam has raised environmental concerns, with the waterway appearing in multiple maps submitted as part of the facility's permit applications. The proximity of the creek to the data center location has emerged as a key issue in the permitting process for the project.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Meta Data Center - Beaver Dam</span><span class="dc-meta">Meta &middot; Beaver Dam, WI &middot; 43 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://westvirginiawatch.com/2026/02/26/d-c-based-real-estate-firm-investing-4b-for-new-data-center-development-in-berkeley-county-wv/" target="_blank" rel="noopener" class="story-title">D.C.-based real estate firm investing $4B for new data center development in Berkeley County, WV</a>
+      <p class="story-summary">Penzance Management, a Washington D.C.-based real estate firm, is investing $4 billion to develop a 1.9 million square-foot "Bedington Campus" data center on 548 acres in Berkeley County, West Virginia, with an expected capacity of at least 600 megawatts. The grid-connected facility is expected to create approximately 1,000 temporary construction jobs and at least 125 permanent positions once operational. Governor Patrick Morrisey designated the project as West Virginia's first certified "high impact intelligence center," though the specific tenant operator for the campus has not yet been announced.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Bedington Campus</span><span class="dc-meta">Penzance Management &middot; Bedington, WV &middot; 600 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 28, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://about.bnef.com/insights/commodities/us-data-center-builder-goes-off-grid-to-speed-deployments/" target="_blank" rel="noopener" class="story-title">US Data Center Builder Goes Off-Grid to Speed Deployments | BloombergNEF</a>
+      <p class="story-summary">Joule Capital Partners is developing a 4,000-acre data center campus in Utah with 1.5 gigawatts of captive power generation in the first phase, using Caterpillar natural gas engines beginning next month to bypass grid connection delays. The company secured $60 million in Series B funding from Clear Lake Investments and Foulger Pratt and plans to bring temporary compute structures online later this year with permanent facilities operational by end of 2026, positioning itself to compete for hyperscaler clients in the competitive race for power-constrained data center capacity. Utah's regulatory environment allowing large power users to establish captive power plants, combined with available water resources and low-latency fiber infrastructure, drove the location selection over traditional data center hubs like Virginia and Texas.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Joule Capital Partners, LLC data center</span><span class="dc-meta">Joule Capital Partners &middot; Delta, UT &middot; —</span></div></div>
+    </div>
+    </div>
+  </section>
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">All Other Stories</h2>
+      <p class="section-subtitle">Remaining stories scoring ≥ 7/10 this week, excluding those shown above</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Feb 26, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.esgtoday.com/meta-signs-solar-ppa-with-mn8-energy-to-power-u-s-data-centers/" target="_blank" rel="noopener" class="story-title">Meta Signs Solar PPA with MN8 Energy to Power U.S. Data Centers - ESG Today</a>
+      <p class="story-summary">Meta has signed a Power Purchase Agreement with MN8 Energy to purchase 100% of the electricity from an 80MW solar project in Juniata County, Pennsylvania, with operations expected to commence by end of 2026. The Walker Solar plant will support Meta's data center operations as the company pursues its net-zero emissions target by 2030 and maintains 100% clean energy matching across its operations. Meta signed over 10GW of renewable PPAs in 2025, making it the largest corporate clean energy offtaker that year alongside Amazon, Google, and Microsoft, which collectively accounted for nearly half of all corporate clean energy deals.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 2, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://virginiabusiness.com/stafford-data-center-growth-i95-2025/" target="_blank" rel="noopener" class="story-title">NoVa data center development moves down I-95 - Virginia Business</a>
+      <p class="story-summary">Stafford County, Virginia is emerging as a secondary data center hub south of Loudoun County's saturated market, with three major projects totaling over 7 million square feet under construction. Vantage Data Centers announced a $2.2 billion, three-building campus on Centreport Parkway near Interstate 95, expected to deliver its first 929,000-square-foot building in 2027 and generate $115-117 million in annual property tax revenue. Texas-based CleanArc Data Centers is investing nearly $3 billion in three 490,000-square-foot facilities on a former shopping center site in nearby Caroline County. The county has 18 additional data center projects in its pipeline as developers move south from Loudoun County's capacity constraints.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#261a3a;border-color:#9B59B6;color:#a569bd">Hyperscaler Strategy</span>
+          <span class="pub-date">Mar 2, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Google's Data Center Buildout Could Top $1 Trillion - Forbes</a>
+      <p class="story-summary">Google's Chief Technologist Amin Vahdat indicated the company plans to invest over $1 trillion in data center buildout over the coming years, representing a substantial capital commitment to infrastructure expansion. The investment signals Google's continued emphasis on scaling computational capacity to support its AI and cloud services operations, though the company has not disclosed specific timelines, geographic locations, or MW capacity details for individual projects.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Feb 28, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wskg.org/regional-news/2026-02-27/dryden-says-no-to-data-centers-cryptocurrency-mines" target="_blank" rel="noopener" class="story-title">Dryden says no to data centers, cryptocurrency mines - WSKG</a>
+      <p class="story-summary">Dryden, a rural town in Tompkins County, New York, became the first municipality in the state to permanently ban data centers and cryptocurrency mining facilities after amending its local zoning code. The move follows over a year of temporary moratorium and comes amid controversy over a proposed data center in neighboring Lansing. New York state legislators have introduced parallel legislation to impose a three-year moratorium on data centers consuming over 20 megawatts of electricity, reflecting broader concerns about environmental and economic impacts as the state hosts over 130 of the nation's 5,000-plus data centers.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 28, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wvia.org/news/local/2026-02-28/least-worst-option-carbon-county-community-faces-data-center-challenges" target="_blank" rel="noopener" class="story-title">'Least worst option': Carbon County community faces data center challenges - WVIA</a>
+      <p class="story-summary">Penn Forest Township in Carbon County is moving forward with a zoning amendment to allow data centers on approximately 500 acres of residential land on Route 903 and Maury Road, where developer Mele Brothers Realty plans to build a data center campus. The township's vice chairman characterized the overlay zoning in a residential area as "the least worst option" due to limited availability of suitable commercial or industrial land, citing state-owned and authority-controlled properties that cannot be developed. Mele Brothers, a Montgomery County company, has stated the project is in feasibility stage and indicated it will pursue development either through the new ordinance or via a validity challenge to the current zoning restrictions. The township supervisors are scheduled to vote on the amendment on Monday, with a Zoning Board hearing on the validity challenge set for March 23.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 2, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/pjm-requests-approval-from-ferc-for-new-behind-the-meter-generation-rules-for-data-centers/" target="_blank" rel="noopener" class="story-title">PJM requests approval from FERC for new behind-the-meter generation rules for data centers - DCD</a>
+      <p class="story-summary">PJM Interconnection filed with FERC to approve new behind-the-meter generation rules for data centers, proposing a 50MW threshold above which new loads would be ineligible for netting their onsite generation against grid consumption, with a three-year transition period for implementation. The proposal also introduces three new transmission services tailored to colocated loads and aims to balance AI-driven data center infrastructure buildout with grid reliability and cost allocation. The filing follows FERC's December order directing PJM to overhaul its colocation framework in response to rapid growth in large data center loads and a rejected behind-the-meter agreement between AWS and Talen Energy for Pennsylvania's Susquehanna nuclear plant. Industrial groups have opposed the changes, arguing the 50MW threshold could render hundreds of megawatts of existing onsite generation uneconomic and deter new projects.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2e2a;border-color:#1ABC9C;color:#1abc9c">Fiber & Network Infrastructure</span>
+          <span class="pub-date">Feb 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.telecomramblings.com/2026/02/metro-bytes-lsc-fiberlight-rightfiber-ezee-fiber-logix/" target="_blank" rel="noopener" class="story-title">Metro Bytes: LSC, FiberLight, RightFiber, Ezee Fiber, LOGIX | Telecom Ramblings</a>
+      <p class="story-summary">Light Source Communications is building a 500-mile intercity fiber route between St. Louis and Tulsa to add regional capacity supporting AI demand, complementing its 130-mile Tulsa metro footprint. FiberLight is investing $350M to add 1,400 route miles of fiber in West Texas, including a third route to Abilene, building on a prior $150M commitment to the region. RightFiber is deploying $50M for last-mile infrastructure expansion in North Texas starting in Seagoville southeast of Dallas, while LOGIX Fiber Networks is expanding fiber routes in the Texas Triangle to serve data center demand in Wilmer, Red Oak, Lancaster, and Midlothian, plus routes from downtown Austin to Bastrop County.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Feb 26, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.bloomberg.com/news/articles/2026-02-25/us-data-center-construction-fell-amid-permit-and-power-delays" target="_blank" rel="noopener" class="story-title">US Data Center Construction Fell Amid Permit and Power Delays - Bloomberg.com</a>
+      <p class="story-summary">US data center construction declined to 5.99 gigawatts at the end of 2025 from 6.35 gigawatts a year earlier, marking the first contraction since 2020 despite strong AI demand, according to CBRE Group Inc. Developers are facing significant headwinds from permitting delays, zoning challenges, and power procurement constraints that are slowing project timelines across the country.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Feb 26, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/alcoa-looks-to-sell-10-aluminum-smelting-plants-to-data-center-developers/" target="_blank" rel="noopener" class="story-title">Alcoa looks to sell 10 aluminum smelting plants to data center developers - DCD</a>
+      <p class="story-summary">Alcoa is marketing approximately 10 idle or curtailed aluminum smelting plants to data center developers, with CEO Bill Oplinger stating the company expects its first sale in the first half of 2026 and two additional deals to follow quickly. Brownfield industrial sites like former smelters are attractive for data center conversion due to existing transmission infrastructure and favorable zoning, as exemplified by TPG Real Estate Partners' development of a gigawatt-scale data center park on the former Alcoa Eastalco Works site in Maryland and TeraWulf's acquisition of Century Aluminum's Hawesville, Kentucky facility with 480MW of existing power capacity for approximately $200 million. Alcoa has already closed multiple smelters including its Washington, Indiana, and New York facilities, creating a portfolio of redevelopment candidates for the data center industry.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 3, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://planetdetroit.org/2026/03/lawmakers-propose-michigan-data-center-moratorium/" target="_blank" rel="noopener" class="story-title">Data center moratorium bills reflect public sentiment, says Michigan lawmaker - Planet Detroit</a>
+      <p class="story-summary">Michigan lawmakers introduced bipartisan legislation to enact a one-year moratorium on data center approvals through April 1, 2027, citing concerns about massive energy and water demands, ratepayer impacts, and climate goals. The proposed bills would prevent the Michigan Department of Environment, Great Lakes, and Energy and the Michigan Public Service Commission from issuing permits or approvals for data centers during the moratorium period. Several southeast Michigan communities including Howell Township, Sterling Heights, and Pontiac have already enacted local data center moratoria. State Rep. Jennifer Wortz said the pause is needed to determine optimal facility locations and how the state will meet data centers' power demands while ensuring developers pay for infrastructure connections.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nl-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">LightSignal</span>
+    <span class="footer-meta">Generated March 03, 2026 at 11:27 AM &nbsp;&middot;&nbsp; Lightpath Strategic Intelligence</span>
+  </div>
+</footer>
+
+</body>
+</html>
