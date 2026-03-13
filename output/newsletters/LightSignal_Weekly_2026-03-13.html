@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightSignal — Mar 7 – Mar 13, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d0d1a;
+    color: #ddd;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .nl-header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #13132a 60%, #0d0d1a 100%);
+    border-bottom: 1px solid #252540;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .logo-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #E0FF00;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-sub {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .date-range {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.3px;
+  }
+  .date-label {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  /* ── Layout ── */
+  .nl-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── Section ── */
+  .nl-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .section-header {
+    border-left: 3px solid #E0FF00;
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E0FF00;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .section-subtitle {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Story Cards ── */
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .story-card {
+    background: #161628;
+    border: 1px solid #252540;
+    border-radius: 8px;
+    padding: 18px 20px 14px;
+    transition: border-color 0.15s;
+  }
+  .story-card:hover {
+    border-color: #3a3a5a;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .rank {
+    font-size: 13px;
+    font-weight: 700;
+    color: #E0FF00;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .pub-date {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .score-pill {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    background: #1a1a10;
+    border: 1px solid #E0FF0044;
+    border-radius: 20px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .score-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #E0FF00;
+    line-height: 1;
+  }
+  .score-max {
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+  }
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .story-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+  .story-title:hover {
+    color: #E0FF00;
+  }
+  .story-summary {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #1e1e30;
+  }
+  .score-breakdown {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── DC Mini List ── */
+  .dc-list {
+    background: #0f0f20;
+    border: 1px solid #1e1e35;
+    border-radius: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .dc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 14px;
+    border-bottom: 1px solid #1a1a30;
+  }
+  .dc-row:last-child {
+    border-bottom: none;
+  }
+  .dc-row::before {
+    content: "⬡";
+    color: #E0FF00;
+    font-size: 10px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .dc-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bbb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+  .dc-meta {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Empty state ── */
+  .empty-notice {
+    color: #444;
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  /* ── Footer ── */
+  .nl-footer {
+    border-top: 1px solid #1a1a2e;
+    margin-top: 20px;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E0FF00;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .footer-meta {
+    font-size: 10px;
+    color: #333;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-right { text-align: left; }
+    .dc-row { flex-direction: column; gap: 2px; }
+    .dc-meta { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nl-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="14,1 26,8 26,24 14,31 2,24 2,8" fill="none" stroke="#E0FF00" stroke-width="2"/>
+      <polygon points="14,7 21,11 21,21 14,25 7,21 7,11" fill="#E0FF00" fill-opacity="0.15" stroke="#E0FF00" stroke-width="1"/>
+    </svg>
+      <div class="logo-text-group">
+        <span class="logo-name">LightSignal</span>
+        <span class="logo-sub">Lightpath Market Intel</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-label">Week of</div>
+      <div class="date-range">Mar 7 – Mar 13, 2026</div>
+    </div>
+  </div>
+</header>
+
+<main class="nl-body">
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">Top Data Center Stories</h2>
+      <p class="section-subtitle">DC-tagged stories scoring ≥ 7/10 from the past 7 days</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#261a3a;border-color:#9B59B6;color:#a569bd">Hyperscaler Strategy</span>
+          <span class="pub-date">Mar 7, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/oracleopenai-drop-plans-to-expand-flagship-abilene-stargate-site-meta-in-talks-to-pick-up-crusoe-capacity-with-nvidias-help/" target="_blank" rel="noopener" class="story-title">Oracle/OpenAI drop plans to expand flagship Abilene Stargate site, Meta in talks to pick up ...</a>
+      <p class="story-summary">Oracle and OpenAI have canceled expansion plans for their flagship Abilene Stargate data center in Texas, which currently operates two buildings totaling around 1.2GW capacity with six more expected this year, citing financing challenges and shifting demand forecasts. The expansion cancellation follows a liquid cooling outage caused by winter weather that strained relations with Crusoe, the developer, and delays in power availability at the site. Nvidia has deposited $150 million with Crusoe to help secure remaining capacity at Abilene for Meta, an unusual move to prevent rival chip designs from being deployed there. OpenAI is instead prioritizing new campuses across multiple states, including a Wisconsin site with Oracle where construction has begun, as the company reduces its projected compute spending to $600 billion by 2030.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Open AI/ SoftBank Stargate data center (Lancium Clean Campus)</span><span class="dc-meta">Open AI &middot; Abilene, TX &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2210;border-color:#F39C12;color:#f0b429">M&A & Capital Markets</span>
+          <span class="pub-date">Mar 12, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.prnewswire.com/news-releases/radiusdc-to-acquire-phoenixnaps-phoenix-data-center-and-colocation-business-302711634.html" target="_blank" rel="noopener" class="story-title">RadiusDC to Acquire PhoenixNAP's Phoenix Data Center and Colocation Business</a>
+      <p class="story-summary">RadiusDC has entered a definitive agreement to acquire phoenixNAP's Phoenix data center and colocation business, with closing expected in Q2 2026. The transaction includes an existing operational facility and development rights that will establish RadiusDC's Phoenix I campus, scaling to approximately 26 megawatts of total critical IT power capacity over time, with an initial 8 MW expansion at the existing DC1 facility and a planned 18+ MW DC2 facility coming online in 1H 2028. PhoenixNAP will retain approximately 80% of its global business and remain a tenant at the facility under its existing management team. The acquisition positions RadiusDC with expanded capacity in one of the fastest-growing U.S. data center markets.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Phoenix Data Center - PhoenixNAP</span><span class="dc-meta">PhoenixNAP &middot; Phoenix, AZ &middot; 50 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Developers of Joliet data center promise city $100 million if project is approved - Shaw Local</a>
+      <p class="story-summary">Data center developers have pledged a $100 million contribution to Joliet, Illinois, contingent on City Council approval of their project. The announcement came ahead of a scheduled council vote on the development. The commitment represents a significant financial incentive for the city to approve the infrastructure project.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">PowerHouse - Joliet</span><span class="dc-meta">PowerHouse &middot; Joliet, IL &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 10, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://6abc.com/post/east-whiteland-twp-residents-oppose-data-center-planners-send-revised-plan-back-review/18698080/" target="_blank" rel="noopener" class="story-title">East Whiteland residents oppose data center as planners send revised plan back for further review</a>
+      <p class="story-summary">A proposed data center expansion in East Whiteland Township, Pennsylvania drew fierce community opposition at a planning commission meeting, with residents citing concerns about property value impacts, power consumption exceeding the entire county's residential usage, and health risks. The developer's revised plan increases the facility from approximately 1 million to 1.7 million square feet across two buildings on a former Superfund site along Swedesford Road and Valley Creek Boulevard, and includes proposed mitigations such as enhanced landscaping, noise monitoring, and reduced water consumption. The planning commission declined to vote on the project, instead returning it for further investigation of residents' concerns, though township officials confirmed the original data center development was already approved for the site.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Chester County</span><span class="dc-meta">fifteenfortyseven &middot; East Whiteland Township, PA &middot; 150 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/new-data-center-construction-confirmed-in-adams-county-ohio/" target="_blank" rel="noopener" class="story-title">New data center construction confirmed in Adams County, Ohio - DCD</a>
+      <p class="story-summary">A new data center is confirmed for Adams County, Ohio at a former Dayton Power & Light landfill site, with an initial 100MW load requested for 2028 scaling to 1.3GW by 2032 according to an AES Ohio regulatory filing. The US Army Corps of Engineers has issued a construction permit with conditions to protect endangered species and cemetery buffer zones. The facility's projected annual consumption of 11.4 million megawatt hours by 2032 would exceed Adams County's entire 2025 energy use by 31 times, driving significant local opposition focused on energy costs, transparency, and environmental concerns.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Buck Canyon</span><span class="dc-meta">Unknown Operator &middot; Aberdeen, OH &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 11, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Hearing for proposed Archbald data center gets heated as hundreds express environmental ...</a>
+      <p class="story-summary">A proposed Wildcat Ridge data center in Archbald faced significant opposition during a public hearing, with hundreds of residents and council members raising concerns about its environmental impact and questioning the project's economic benefits. The facility's scale and potential effects on the local community became central points of contention as stakeholders debated whether the infrastructure investment aligned with regional environmental priorities.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Wildcat Ridge AI Data Center Campus</span><span class="dc-meta">nan &middot; Archbald, PA &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 12, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://buffalonews.com/news/local/business/article_e50b1c87-6cac-4356-ad7d-55b3052d344b.html" target="_blank" rel="noopener" class="story-title">Stream plans to invest $19.5 billion in data center - Buffalo News</a>
+      <p class="story-summary">Stream Data Centers increased its planned investment in a Genesee County data center complex to $19.5 billion, a 65% increase from its original commitment at the STAMP site. The company is also seeking nearly double the tax incentives it initially requested for the project. The facility has faced opposition due to environmental concerns.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">STAMP data center: Project Hydroscale, Project Double Reed</span><span class="dc-meta">Stream Data Centers &middot; Alabama, NY &middot; 250 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 11, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.fox43.com/article/news/local/dauphin-county/company-looking-to-turn-dauphin-highlands-golf-course-into-a-data-center-buys-more-land-for-50-million-dauphin-county/521-4240f83d-d375-4453-9ae6-75d85088df5c" target="_blank" rel="noopener" class="story-title">Company looking to turn Dauphin Highlands Golf Course into data center buys more land ...</a>
+      <p class="story-summary">Provident Realty, a Texas-based company, purchased 11 parcels of land in Swatara Township near Harrisburg, Pennsylvania for $50 million as part of its data center development project. The land acquisition follows the Dauphin County General Authority's agreement to sell the Dauphin Highlands Golf Course to the company for conversion into a data center. Swatara Township commissioners previously rezoned the Highland Street corridor for mixed-use development to permit data center construction in designated areas. Provident Realty has not yet submitted formal development plans to township officials.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Harrisburg I, LLC/ Provident data center</span><span class="dc-meta">Harrisburg I, LLC( Provident Realty) &middot; Harrisburg, PA &middot; 428 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/aligned-tops-out-maryland-data-center/" target="_blank" rel="noopener" class="story-title">Aligned tops out Maryland data center - DCD</a>
+      <p class="story-summary">Aligned has completed the structural phase of its 72MW IAD-06 data center in Frederick, Maryland, a two-story, 450,000 sq ft facility on TPG's Quantum Frederick park where four buildings totaling 264MW are planned. The topping out marks a milestone for Aligned's broader expansion at the site, where the operator plans to develop 3.3 million sq ft of capacity after Maryland relaxed regulatory restrictions on backup generators in 2024. Additional hyperscale tenants including Rowan Digital Infrastructure and Amazon are also developing facilities within the 2,100-acre Quantum park, with Amazon planning a data center requiring more than 258MW of capacity.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Aligned - Frederick</span><span class="dc-meta">nan &middot; Frederick, MD &middot; 67 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 11, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.solarpowerworldonline.com/2026/03/1-gw-solar-project-planned-for-utah-hyperscale-data-center/" target="_blank" rel="noopener" class="story-title">1-GW solar project planned for Utah hyperscale data center</a>
+      <p class="story-summary">Creekstone Energy received zoning approval from Millard County, Utah to develop over 1 GW of solar capacity on 13,000 acres of state trust land adjacent to its Delta Gigasite hyperscale data center campus, which is master-planned for more than 10 GW of total capacity. The company executed a long-term solar lease with Utah's School and Institutional Trust Lands Administration, with lease revenue benefiting the state's public education system. Creekstone plans to begin site preparation and permitting immediately, with first solar generation expected online within the next year and data center deliveries beginning in 2027. The project combines dedicated solar generation with contracted natural gas supply to support AI-focused hyperscale tenants at the Delta Gigasite campus.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Delta Gigasite</span><span class="dc-meta">Fibernet MercuryDelta, LLC &middot; Delta, UT &middot; —</span></div></div>
+    </div>
+    </div>
+  </section>
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">All Other Stories</h2>
+      <p class="section-subtitle">Remaining stories scoring ≥ 7/10 this week, excluding those shown above</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.spotlightpa.org/news/2026/03/data-center-boom-numbers-energy-grid-water-environment/" target="_blank" rel="noopener" class="story-title">Pennsylvania's data center boom, by the numbers - Spotlight PA</a>
+      <p class="story-summary">Pennsylvania is facing a significant data center development surge, with 53 proposed facilities in addition to 52 already active, prompting state policymakers to debate regulatory approaches ranging from faster permitting incentives to potential three-year moratoria. The expansion has raised concerns among residents over energy and water consumption impacts on utility prices and grid stability, though 60% of Pennsylvanians expect the projects will create substantial jobs. The state projects losing $2 billion in tax revenue by 2031 due to a 2021 tax exemption for data center computer equipment purchases, compounded by a lack of reporting requirements that prevents accurate revenue impact assessment.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 8, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.energyconnects.com/news/utilities/2026/march/plug-power-plans-hydrogen-offering-in-top-us-power-grid-auction/" target="_blank" rel="noopener" class="story-title">Plug Power Plans Hydrogen Offering in Top US Power-Grid Auction - Energy Connects</a>
+      <p class="story-summary">Plug Power is planning to offer up to 250 megawatts of hydrogen-generated electricity in a potential emergency auction being considered by PJM Interconnection, which operates the 13-state power grid serving the eastern and Midwestern US. The supplier is seeking contracts lasting at least seven years and is already in discussions with hyperscalers, data center companies, and utilities to address surging power demand driven by AI infrastructure. PJM is facing significant power shortages due to increased data center consumption, prompting the Trump administration to urge the grid operator to hold the emergency auction later this year. Plug Power's strategic pivot toward hydrogen gas supply and generation systems is expected to drive profitability by 2028.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 9, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.spotlightpa.org/news/2026/03/data-centers-josh-shapiro-permitting-water-energy-jobs-regulation-environment/" target="_blank" rel="noopener" class="story-title">Shapiro ties fast-track permits to data center standards - Spotlight PA</a>
+      <p class="story-summary">Pennsylvania Gov. Josh Shapiro is offering expedited permitting through his Fast Track program to data center developers who meet stricter environmental and transparency standards under his new GRID (Governor's Responsible Infrastructure Development) initiative, aimed at preventing negative impacts on energy prices, water supplies, and local communities. The standards require developers to commit to bringing their own power generation or funding new generation capacity to avoid straining the electrical grid. Environmental advocates welcomed the incentive-based approach but noted that enforcement mechanisms would require cooperation from the Democrat-controlled state House and Republican-controlled Senate to be effective.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 8, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.cleveland.com/news/2026/03/an-ohio-suburb-approved-a-data-center-now-a-gas-plant-is-going-up-next-to-the-elementary-school.html" target="_blank" rel="noopener" class="story-title">An Ohio suburb approved a data center; Now a gas plant is going up next to the elementary school</a>
+      <p class="story-summary">Amazon's 2022 data center approval in Hilliard, Ohio has been followed by plans for a natural gas fuel cell facility built by American Electric Power under a 2025 state law that fast-tracks behind-the-meter power plant approvals, expected to emit 241,000 tons of CO2 annually near residential areas and Beacon Elementary School. Ohio's House Bill 15 transferred jurisdiction over these projects from local governments to the state Power Siting Board, allowing approval in as little as 45 days and effectively removing local communities' ability to block the facilities. The development highlights the infrastructure challenge posed by data center power demands straining regional grids, though Ohio lawmakers acknowledge the problem and have introduced various management bills.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 7, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.indianola-ia.com/news/norwalk-city-council-approved-data-center-development-agreement-despite-citizen-concerns/article_96dc529d-b4f8-4eaf-83dd-b99d5a768dba.html" target="_blank" rel="noopener" class="story-title">Norwalk City Council approved data center development agreement despite citizen concerns | News</a>
+      <p class="story-summary">The Norwalk City Council approved a development agreement Thursday for "Project West," a proposed $12 billion data center campus spanning 282 acres west of Highway 28, with developer Tract constructing the facilities before transferring them to an unnamed technology operator. The approval proceeded despite over two hours of public comment raising health and environmental concerns, with the council chambers so overcrowded that residents were relocated to additional spaces to comply with fire code. City officials addressed water usage concerns, confirming the project would consume 400,000 gallons per day, remaining within the city's planned industrial capacity of 650,000 gallons daily. Mayor Tom Phillips noted that local government has limited regulatory authority over environmental issues, directing residents to state and federal agencies for those concerns.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2e2a;border-color:#1ABC9C;color:#1abc9c">Fiber & Network Infrastructure</span>
+          <span class="pub-date">Mar 11, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://aijourn.com/ais-growth-curve-is-colliding-with-infrastructure-reality/" target="_blank" rel="noopener" class="story-title">AI's Growth Curve Is Colliding with Infrastructure Reality | The AI Journal</a>
+      <p class="story-summary">AI workload scaling is colliding with physical infrastructure constraints, as hyperscalers and enterprises demand massive increases in long-haul fiber, metro fiber, dark fiber, and low-latency connectivity to support petabyte-scale data movements during training and latency-sensitive inference operations. While AI compute can scale through virtualization and chip innovation, fiber optic network deployment remains geographically constrained and labor-intensive, requiring route engineering, permitting, trenching, fiber installation, and specialized technical expertise. The telecommunications and construction sectors are facing a critical skilled labor shortage in fiber splicers, outside plant engineers, and network technicians, creating a structural bottleneck between accelerating AI adoption and the ability to physically deploy the required infrastructure at scale.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.powermag.com/why-nuclear-power-is-most-viable-option-for-data-centers/" target="_blank" rel="noopener" class="story-title">Why Nuclear Power is Most Viable Option for Data Centers</a>
+      <p class="story-summary">Data center operators are turning to small modular reactors (SMRs) as grid constraints threaten expansion, with projects like Oklo's Aurora microreactor at Idaho National Laboratory and TerraPower's Natrium plant in Wyoming already underway. U.S. data center electricity demand is projected to surge from 176 terawatt-hours in 2023 to over 580 TWh by 2028, while interconnection wait times exceed five years in regions like Northern Virginia and Georgia. SMRs can generate 50-300 MW on-site in phases without grid dependencies, addressing limitations of solar, wind, and natural gas alternatives that face interconnection delays and capacity constraints.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 8, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.mychesco.com/a/news/government/pa-lawmakers-advance-bills-targeting-data-center-impacts/" target="_blank" rel="noopener" class="story-title">Pa. Lawmakers Advance Bills Targeting Data Center Impacts - MyChesCo</a>
+      <p class="story-summary">Pennsylvania lawmakers advanced two bills out of the House Energy Committee aimed at regulating data center development across the state. House Bill 2150 would mandate annual reporting of electricity and water consumption by data center facilities, while House Bill 2151 would direct the Department of Community and Economic Development to create optional model ordinance language for municipalities to regulate data centers on issues including facility size, noise, and water usage. Supporters argue the measures are necessary to provide transparency and tools for local communities as data center demand surges due to artificial intelligence, machine learning, and video streaming applications.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 7, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.telegraphherald.com/news/tri-state/article_42dd2f99-3897-40ad-94f3-c5497f60fcc7.html" target="_blank" rel="noopener" class="story-title">Grant County residents advocate against potential data center | Tri-state News</a>
+      <p class="story-summary">A developer is exploring a potential $1 billion mega-data center site in Grant County, Wisconsin, with Cassville Township cited as a likely location due to proximity to the Cardinal-Hickory Creek transmission line, though the project remains in early evaluation stages with confirmation expected around May. Cassville Township leadership is considering adopting zoning powers to give themselves authority over such projects, with a special board meeting scheduled for March 12 to potentially initiate that process. Local residents are mounting vocal opposition, with a large informational event planned in Potosi to mobilize community concerns about the data center, which would house servers for cloud-based software and artificial intelligence applications. The developer has reportedly shifted focus to evaluate two alternative sites outside Grant County while addressing electricity and water usage concerns.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 13, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/stack-set-to-acquire-site-in-pittsylvania-county-virginia/" target="_blank" rel="noopener" class="story-title">Stack set to acquire site in Pittsylvania County, Virginia - DCD</a>
+      <p class="story-summary">Stack Infrastructure is acquiring up to 2,990 acres at the Southern Virginia Megasite in Pittsylvania County for $737.8 million, with the deal contingent on securing 299MW of grid capacity from Appalachian Power by end of 2028. The phased acquisition includes a first closing of at least 1,000 acres by June 2027, with Stack potentially investing up to $73 billion across the 30-year development period. The site offers immediate advantages including 100MW available power capacity through AEP, a nearby 125MW solar facility with 55MW battery storage coming online in 2027, and direct pipeline access via Williams Transco.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nl-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">LightSignal</span>
+    <span class="footer-meta">Generated March 13, 2026 at 11:23 AM &nbsp;&middot;&nbsp; Lightpath Strategic Intelligence</span>
+  </div>
+</footer>
+
+</body>
+</html>

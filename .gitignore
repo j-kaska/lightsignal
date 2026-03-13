@@ -12,6 +12,7 @@ data/processed/
 data/archive/
 data/articles/staging/seen_urls.json
 data/articles/staging/duplicate_cache.json
+data/articles/staging/staged_articles.csv
 data/articles/logs/
 output/archive/
 scripts/kml/deckgl_bundle.js
