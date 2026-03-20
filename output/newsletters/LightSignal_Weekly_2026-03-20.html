@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightSignal — Mar 14 – Mar 20, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d0d1a;
+    color: #ddd;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .nl-header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #13132a 60%, #0d0d1a 100%);
+    border-bottom: 1px solid #252540;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .logo-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #E0FF00;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-sub {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .date-range {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.3px;
+  }
+  .date-label {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  /* ── Layout ── */
+  .nl-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── Section ── */
+  .nl-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .section-header {
+    border-left: 3px solid #E0FF00;
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E0FF00;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .section-subtitle {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Story Cards ── */
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .story-card {
+    background: #161628;
+    border: 1px solid #252540;
+    border-radius: 8px;
+    padding: 18px 20px 14px;
+    transition: border-color 0.15s;
+  }
+  .story-card:hover {
+    border-color: #3a3a5a;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .rank {
+    font-size: 13px;
+    font-weight: 700;
+    color: #E0FF00;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .pub-date {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .score-pill {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    background: #1a1a10;
+    border: 1px solid #E0FF0044;
+    border-radius: 20px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .score-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #E0FF00;
+    line-height: 1;
+  }
+  .score-max {
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+  }
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .story-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+  .story-title:hover {
+    color: #E0FF00;
+  }
+  .story-summary {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #1e1e30;
+  }
+  .score-breakdown {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── DC Mini List ── */
+  .dc-list {
+    background: #0f0f20;
+    border: 1px solid #1e1e35;
+    border-radius: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .dc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 14px;
+    border-bottom: 1px solid #1a1a30;
+  }
+  .dc-row:last-child {
+    border-bottom: none;
+  }
+  .dc-row::before {
+    content: "⬡";
+    color: #E0FF00;
+    font-size: 10px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .dc-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bbb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+  .dc-meta {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Empty state ── */
+  .empty-notice {
+    color: #444;
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  /* ── Footer ── */
+  .nl-footer {
+    border-top: 1px solid #1a1a2e;
+    margin-top: 20px;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E0FF00;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .footer-meta {
+    font-size: 10px;
+    color: #333;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-right { text-align: left; }
+    .dc-row { flex-direction: column; gap: 2px; }
+    .dc-meta { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nl-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="14,1 26,8 26,24 14,31 2,24 2,8" fill="none" stroke="#E0FF00" stroke-width="2"/>
+      <polygon points="14,7 21,11 21,21 14,25 7,21 7,11" fill="#E0FF00" fill-opacity="0.15" stroke="#E0FF00" stroke-width="1"/>
+    </svg>
+      <div class="logo-text-group">
+        <span class="logo-name">LightSignal</span>
+        <span class="logo-sub">Lightpath Market Intel</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-label">Week of</div>
+      <div class="date-range">Mar 14 – Mar 20, 2026</div>
+    </div>
+  </div>
+</header>
+
+<main class="nl-body">
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">Top Data Center Stories</h2>
+      <p class="section-subtitle">DC-tagged stories scoring ≥ 7/10 from the past 7 days</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 17, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wtol.com/video/news/local/google-to-build-500-million-data-center-in-lima/512-00044bb8-d1c0-4f8d-9dc0-312ada6cf7c6" target="_blank" rel="noopener" class="story-title">Google to build $500 million data center in Lima - Toledo - WTOL 11</a>
+      <p class="story-summary">Google announced a $500 million data center investment in Lima, Allen County, Ohio, with an additional $50 million dedicated to local infrastructure enhancements. The project represents a significant capital commitment to the region's data center and network infrastructure development.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Google - North Cole St</span><span class="dc-meta">Google &middot; Lima, OH &middot; 291 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 20, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://woub.org/2026/03/20/federal-government-pike-county-site-courntrys-largest-data-center-federal-trade-deal/" target="_blank" rel="noopener" class="story-title">Pike County to be site of the country's largest data center - WOUB Public Media -</a>
+      <p class="story-summary">SoftBank and AEP Ohio are partnering with the U.S. Department of Energy to develop a 10 GW data center campus on the site of the former Portsmouth Gaseous Diffusion Plant in Pike County, Ohio, making it one of the country's largest planned data center facilities. The $33 billion project includes a new 10 GW natural gas power generation plant that will supply electricity to the data center, with ownership of the power facility shared equally between the U.S. and Japanese governments as part of a broader $550 billion Japanese investment commitment. The PORTS Technology Campus is intended to support artificial intelligence infrastructure development while creating thousands of jobs and reducing regional electricity costs.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">SB Energy / New Day</span><span class="dc-meta">SoftBank &middot; Piketon, OH &middot; 9 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 19, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.timesleader.com/news/1735892/96-salem-twp-landowners-complete-historic-1700-acre-sale-for-major-data-center-campus" target="_blank" rel="noopener" class="story-title">96 Salem Twp. landowners complete historic 1,700-acre sale for major data center campus</a>
+      <p class="story-summary">Blackstone QTS completed the acquisition of approximately 1,700 acres in Salem Township from 96 landowners for over $500 million in what is described as one of the largest land aggregations for data centers in the country. The company plans to develop 12 to 17 data centers on the campus, positioned adjacent to an Amazon data center site near Salem Nuclear Power Plant. The transaction was facilitated by 4-3 Consulting and brokered by Jones Lang LaSalle, with the deal structured to keep landowners aligned and engaged throughout the process.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Blackstone QTS - Salem Township</span><span class="dc-meta">QTS &middot; Delmont, PA &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 18, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.southbendtribune.com/story/news/local/2026/03/17/microsoft-st-joseph-county-reach-memorandum-of-understanding/89201619007/?gnt-cfr=1&gca-cat=p&gca-uir=true&gca-epti=z118060p001950c001950v118060d--38--b--38--&gca-ft=167&gca-ds=sophi" target="_blank" rel="noopener" class="story-title">St. Joseph boards approve further utilities spending for data center - South Bend Tribune</a>
+      <p class="story-summary">The St. Joseph County Board of Commissioners and Redevelopment Commission approved a Memorandum of Understanding allowing Microsoft to advance design work on a multi-million-dollar data center in Granger, Indiana. The approval enables the technology company to move forward with the project, though some members of the public expressed concerns about aspects of the development and the local government's communication strategy regarding the initiative.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Microsoft: Granger</span><span class="dc-meta">Microsoft &middot; Granger, IN &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 18, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/nscale-acquires-8gw-monarch-compute-campus-microsoft-signs-on-for-135gw-of-compute/" target="_blank" rel="noopener" class="story-title">Nscale acquires 8GW Monarch Compute Campus, Microsoft signs on for 1.35GW of compute</a>
+      <p class="story-summary">Nscale acquired American Intelligence & Power Corporation's 8GW Monarch Compute Campus in Mason County, West Virginia, with Microsoft committing to lease 1.35GW of AI compute capacity via a non-binding letter of intent. The first 2GW phase is expected online by 2028 with Caterpillar-supplied natural gas generator sets, scaling to full 8GW capacity by 2031. Microsoft's deployment will utilize Nvidia Vera Rubin NVL72 GPUs across multiple tranches beginning in late 2027 under a long-term data center lease and multi-year compute services agreement. The 2,250-acre campus represents one of the world's largest planned AI infrastructure facilities, with full capacity expected by 2031.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Mountaineer Gigasystem/ Monarch Cloud Campus</span><span class="dc-meta">Nscale &middot; Point Pleasant, WV &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 19, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wfyi.org/news/articles/decatur-township-data-center-mdc-vote" target="_blank" rel="noopener" class="story-title">Indianapolis approves plan to build $4B data center in Decatur Township after months of pushback</a>
+      <p class="story-summary">The Metropolitan Development Commission approved a $4 billion, 130-acre data center project proposed by Seattle-based Sabey in Decatur Township, Marion County, Indiana, despite months of community opposition over noise, energy demand, water use, and property value concerns. The developer used variance requests rather than formal rezoning to circumvent the city-county council's ability to override the commission's decision, a procedural move criticized by residents as deliberately limiting their legal recourse. Sabey secured backing from the Central Indiana Building Trades Council, which emphasized job opportunities for skilled labor, while the city-county councilor representing the area stated he negotiated for community protections despite supporting the development.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Sabey - Indianapolis</span><span class="dc-meta">Sabey &middot; Camby, IN &middot; 250 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2210;border-color:#F39C12;color:#f0b429">M&A & Capital Markets</span>
+          <span class="pub-date">Mar 17, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.prnewswire.com/news-releases/american-intelligence--power-corporation-signs-agreement-to-be-acquired-by-nscale-establishing-the-worlds-first-vertically-integrated-energy-to-compute-ai-hyperscaler-with-8-gw-site-in-west-virginia-302715147.html" target="_blank" rel="noopener" class="story-title">American Intelligence & Power Corporation Signs Agreement to be Acquired by Nscale ...</a>
+      <p class="story-summary">American Intelligence & Power Corporation agreed to be acquired by hyperscaler Nscale Global Holdings, combining Nscale's compute platform with the Monarch Compute Campus, an 8+ GW AI data center project on 2,250 acres in Mason County, West Virginia powered by Marcellus Shale gas. The deal creates a vertically integrated energy-to-compute platform designed to deliver long-term, low-cost AI infrastructure while operating as the nation's first state-certified AI microgrid under West Virginia's HB 2014 framework. AIPCorp co-founder Daniel Shapiro will lead Nscale's newly formed Global Energy & Power division as Chief Power & Energy Officer.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Mountaineer Gigasystem/ Monarch Cloud Campus</span><span class="dc-meta">Nscale &middot; Point Pleasant, WV &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 17, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.freep.com/story/money/business/2026/03/17/google-reveals-project-cannoli-data-center/89185890007/?gnt-cfr=1&gca-cat=p&gca-uir=false&gca-epti=z114307p117150c117150u112807e1139xxv114307&gca-ft=123&gca-ds=sophi" target="_blank" rel="noopener" class="story-title">Google reveals it is behind big 'Project Cannoli' data center - Detroit Free Press</a>
+      <p class="story-summary">Google disclosed that it is the operator behind "Project Cannoli," a 1-gigawatt data center planned for Van Buren Township in Wayne County, Michigan, ending months of speculation about the project's identity. The announcement, made on March 17, 2026, reveals Google's expansion of its data center footprint in the region with this large-scale infrastructure investment.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Project Cannoli</span><span class="dc-meta">Pannattoni &middot; Van Buren Township, MI &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 18, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.star-telegram.com/news/politics-government/article315075197.html" target="_blank" rel="noopener" class="story-title">Fort Worth council members take thousands from data center developer</a>
+      <p class="story-summary">Black Mountain's CEO Rhett Bennett donated $36,000 to Fort Worth Mayor Mattie Parker and eight City Council members in 2024-2025 as the company pursues approval for a $10 billion data center project on 142+ acres in southeast Fort Worth near Lon Stephenson Road and Forest Hill Drive. The contributions, ranging from $2,000 to $12,000 per official, come as the council considers additional zoning requests for 42 and 38 acres to expand the campus, though residents have opposed the project over location and health concerns. Council members and Bennett stated the donations do not influence voting on the zoning matters, with several officials declining to comment or return requests for clarification.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Black Mountain LLC data center</span><span class="dc-meta">nan &middot; Fort Worth, TX &middot; 274 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 15, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Residents in Decatur Township protest proposed data center, citing pollution and noise concerns</a>
+      <p class="story-summary">Sabey Corporation has proposed a data center project on 130 acres of farmland in Decatur Township on Indianapolis's southeast side, drawing resident opposition over pollution and noise concerns. The project has prompted local community pushback, with residents voicing environmental and quality-of-life objections to the planned facility.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Sabey - Indianapolis</span><span class="dc-meta">Sabey &middot; Camby, IN &middot; 250 MW</span></div></div>
+    </div>
+    </div>
+  </section>
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">All Other Stories</h2>
+      <p class="section-subtitle">Remaining stories scoring ≥ 7/10 this week, excluding those shown above</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 15, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.themesatribune.com/news/re-sized-data-center-in-mesa-sails-to-approval/article_a0ece120-74c7-476b-a64e-ff4015ee7e27.html" target="_blank" rel="noopener" class="story-title">Re-sized data center in Mesa sails to approval | News | themesatribune.com</a>
+      <p class="story-summary">EdgeCore received Planning and Zoning Board approval to build a 1.2 million square-foot data center in southeast Mesa, Arizona, reducing its original 2.1 million square-foot proposal to accommodate Salt River Project's expanded energy infrastructure needs. The project consists of two 618,480-square-foot multi-story buildings located at the southwest corner of Elliot Road and Everton Terrace in the Eastmark master-planned community, positioned between existing Apple and Meta data centers on Mesa's technology corridor. The approval included conditions such as noise analysis, generator testing restrictions, FAA filings due to proximity to Mesa Gateway Airport, and required murals and screening elements on the buildings.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 16, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Exclusive: Cresa completes 249K-sf Carlstadt data center lease for Russo - NJBIZ</a>
+      <p class="story-summary">Russo Development completed a 249,640-square-foot data center lease in Carlstadt, New Jersey, with support from real estate firm Cresa, reflecting continued demand for data center space in the New Jersey market. The transaction underscores the region's growing appeal for large-scale infrastructure tenants seeking proximity to major metropolitan areas and established network connectivity corridors.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 19, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://triblive.com/privacy/" target="_blank" rel="noopener" class="story-title">Alcoa nears first sale of property for potential data center - TribLIVE.com</a>
+      <p class="story-summary">Alcoa is nearing its first property sale for a potential data center development, signaling movement on the company's real estate monetization strategy in what appears to be a Rust Belt location with available industrial land suited for infrastructure deployment.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 20, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://whyy.org/articles/pennsylvania-electricity-costs-data-centers/" target="_blank" rel="noopener" class="story-title">PA electric utility agrees to limit data center costs - WHYY</a>
+      <p class="story-summary">A Pennsylvania utility rate case settlement aims to shield residential and small business customers from infrastructure costs associated with data center expansion, addressing concerns that facilities requiring massive power consumption and grid upgrades are driving electricity rates upward. PJM Interconnection capacity auction prices have surged 860% between 2023 and 2024, reaching a $333 per megawatt-day cap in December 2025 while failing to secure sufficient power reserves. The settlement could serve as a model for other states by preventing residential ratepayers from subsidizing transmission and distribution infrastructure built primarily to serve individual data center facilities.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 20, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">ICC approves ComEd proposal requiring multimillion dollar deposits for new data center projects</a>
+      <p class="story-summary">The Illinois Commerce Commission approved ComEd's proposal requiring new data center projects to post multimillion-dollar deposits as a condition of service, addressing concerns that power-intensive data centers are driving up electricity costs in the state. The measure establishes a mechanism to manage the financial impact of large-scale data center development on ComEd's infrastructure and customer rates. This approval reflects growing regulatory scrutiny of data center expansion in regions where grid capacity and power availability have become critical constraints.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 17, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.newarkadvocate.com/story/news/local/granville/2026/03/17/newark-ohio-energy-cooperative-proposes-licking-county-pipeline-new-albany-data-center/89118814007/?gnt-cfr=1&gca-cat=p&gca-uir=true&gca-epti=undefined&gca-ft=0&gca-ds=sophi" target="_blank" rel="noopener" class="story-title">Licking County natural gas pipeline proposed for New Albany data center</a>
+      <p class="story-summary">The Energy Cooperative, a natural gas utility based in Newark, has proposed a $150 million, 24-inch-diameter pipeline spanning 24 miles across Licking County to deliver fuel to a data center power plant in New Albany International Business Park. The project is divided into two phases, with Phase 1 running from Mink Street south to State Route 161 and eastward toward Granville, while Phase 2 extends from Granville to a point east of Hebron along U.S. Route 40. The pipeline infrastructure signals growing demand for natural gas generation capacity to support data center operations in central Ohio.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 17, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.thecooldown.com/green-business/pennsylvania-farmer-rejects-15-million-offer/" target="_blank" rel="noopener" class="story-title">Farm owner turns down staggering $15 million offer from data center developer: 'I love this land'</a>
+      <p class="story-summary">An 86-year-old farmer in Silver Spring Township near Harrisburg, Pennsylvania declined a $15 million offer (approximately $60,000 per acre) from a data center developer for his 261-acre farm, citing his attachment to the land and refusal to see it converted to industrial use. Instead, Raudabaugh sold the development rights through a local preservation program for $1.9 million, permanently restricting the property to agricultural use and preventing future conversion to data center or warehouse facilities. The decision reflects growing tension between tech companies expanding data center footprints on rural land to support artificial intelligence and cloud computing infrastructure, and rural communities seeking to preserve agricultural landscapes and limit industrial development.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2210;border-color:#F39C12;color:#f0b429">M&A & Capital Markets</span>
+          <span class="pub-date">Mar 18, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Nebius intends to raise $3.75 billion via convertible loan following Meta, Nvidia deals</a>
+      <p class="story-summary">Nebius plans to raise $3.75 billion through a convertible loan offering, following recent infrastructure deals with Meta and Nvidia. The fundraising activity reflects broader momentum among hyperscaler companies expected to increase debt issuance this year to fund accelerating data center buildouts. The funding will support Nebius's expansion of compute and infrastructure capacity amid heightened competition among the Big Five hyperscalers for capital to finance rapid AI and data center deployment.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 15, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">In Will County, a deluge of data centers, warehouses, solar farms - Chicago Tribune</a>
+      <p class="story-summary">The Joliet City Council is voting on what would be Illinois's largest data center, marking a significant expansion of infrastructure development in Will County that has already seen a surge of data centers, warehouses, and solar farms. Local residents are expressing concerns that the pace of development is unsustainable, though the article does not specify the facility's capacity or investment amount.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 3/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 15, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.altitudesmagazine.com/ai-data-center-lansing-environmental-concerns-county-meeting/" target="_blank" rel="noopener" class="story-title">AI Data Center Plan in Lansing Sparks Environmental Concerns at County Meeting</a>
+      <p class="story-summary">TeraWulf is planning an artificial intelligence data center at a former coal-fired power plant site in Lansing that would consume 400 megawatts of electricity at peak capacity and withdraw over 1 million gallons of water daily from Cayuga Lake, drawing environmental concerns from Seneca County residents who worry about regional impacts on electricity costs and water resources. During a county board meeting, resident Andrea Jodeit called for the New York State Department of Environmental Conservation to reject the project's modified water withdrawal permit and requested studies on the facility's potential effects across multiple counties. Some supervisors expressed caution about taking immediate action without independent verification of the claims presented.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nl-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">LightSignal</span>
+    <span class="footer-meta">Generated March 20, 2026 at 02:19 PM &nbsp;&middot;&nbsp; Lightpath Strategic Intelligence</span>
+  </div>
+</footer>
+
+</body>
+</html>
