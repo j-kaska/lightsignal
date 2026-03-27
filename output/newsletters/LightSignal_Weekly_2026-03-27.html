@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LightSignal — Mar 21 – Mar 27, 2026</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #0d0d1a;
+    color: #ddd;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .nl-header {
+    background: linear-gradient(135deg, #0d0d1a 0%, #13132a 60%, #0d0d1a 100%);
+    border-bottom: 1px solid #252540;
+    padding: 0;
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-block {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+  }
+  .logo-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .logo-name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #E0FF00;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .logo-sub {
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    color: #888;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-right {
+    text-align: right;
+  }
+  .date-range {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    letter-spacing: 0.3px;
+  }
+  .date-label {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  /* ── Layout ── */
+  .nl-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── Section ── */
+  .nl-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .section-header {
+    border-left: 3px solid #E0FF00;
+    padding-left: 14px;
+    margin-bottom: 4px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #E0FF00;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .section-subtitle {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Story Cards ── */
+  .story-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .story-card {
+    background: #161628;
+    border: 1px solid #252540;
+    border-radius: 8px;
+    padding: 18px 20px 14px;
+    transition: border-color 0.15s;
+  }
+  .story-card:hover {
+    border-color: #3a3a5a;
+  }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .rank {
+    font-size: 13px;
+    font-weight: 700;
+    color: #E0FF00;
+    min-width: 28px;
+    flex-shrink: 0;
+  }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .pub-date {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+  }
+  .score-pill {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    background: #1a1a10;
+    border: 1px solid #E0FF0044;
+    border-radius: 20px;
+    padding: 2px 10px;
+    flex-shrink: 0;
+  }
+  .score-label {
+    font-size: 10px;
+    color: #888;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .score-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #E0FF00;
+    line-height: 1;
+  }
+  .score-max {
+    font-size: 10px;
+    color: #888;
+    font-weight: 400;
+  }
+  .cat-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    padding: 2px 9px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .story-title {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ccc;
+    text-decoration: none;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    transition: color 0.15s;
+  }
+  .story-title:hover {
+    color: #E0FF00;
+  }
+  .story-summary {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    border-top: 1px solid #1e1e30;
+  }
+  .score-breakdown {
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── DC Mini List ── */
+  .dc-list {
+    background: #0f0f20;
+    border: 1px solid #1e1e35;
+    border-radius: 6px;
+    margin-top: 12px;
+    overflow: hidden;
+  }
+  .dc-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 14px;
+    border-bottom: 1px solid #1a1a30;
+  }
+  .dc-row:last-child {
+    border-bottom: none;
+  }
+  .dc-row::before {
+    content: "⬡";
+    color: #E0FF00;
+    font-size: 10px;
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+  .dc-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #bbb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 260px;
+  }
+  .dc-meta {
+    font-size: 11px;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Empty state ── */
+  .empty-notice {
+    color: #444;
+    font-style: italic;
+    padding: 20px 0;
+  }
+
+  /* ── Footer ── */
+  .nl-footer {
+    border-top: 1px solid #1a1a2e;
+    margin-top: 20px;
+  }
+  .footer-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E0FF00;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .footer-meta {
+    font-size: 10px;
+    color: #333;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .header-inner { flex-direction: column; align-items: flex-start; }
+    .header-right { text-align: left; }
+    .dc-row { flex-direction: column; gap: 2px; }
+    .dc-meta { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nl-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <svg width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="14,1 26,8 26,24 14,31 2,24 2,8" fill="none" stroke="#E0FF00" stroke-width="2"/>
+      <polygon points="14,7 21,11 21,21 14,25 7,21 7,11" fill="#E0FF00" fill-opacity="0.15" stroke="#E0FF00" stroke-width="1"/>
+    </svg>
+      <div class="logo-text-group">
+        <span class="logo-name">LightSignal</span>
+        <span class="logo-sub">Lightpath Market Intel</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-label">Week of</div>
+      <div class="date-range">Mar 21 – Mar 27, 2026</div>
+    </div>
+  </div>
+</header>
+
+<main class="nl-body">
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">Top Data Center Stories</h2>
+      <p class="section-subtitle">DC-tagged stories scoring ≥ 7/10 from the past 7 days</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://governor.wv.gov/article/governor-morrisey-announces-google-data-center-project-putnam-county" target="_blank" rel="noopener" class="story-title">Governor Morrisey Announces Google Data Center Project in Putnam County</a>
+      <p class="story-summary">Google has purchased land in Putnam County, West Virginia, and received approval for a multibillion-dollar High Impact Development Project data center campus, marking a significant infrastructure investment for the state. The company has committed to covering 100 percent of the electricity costs and all necessary electrical, water, and sewer upgrades for the facility, with a pledge to replenish 120 percent of water consumed by 2030. The project is in early stages with substantial work remaining, though similar Google data center campuses in other states have generated thousands of construction jobs and hundreds of permanent positions. West Virginia's House Bill 2014 established a regulatory framework for data center projects, and the state is advancing its 50 by 50 energy strategy to expand power generation capacity to 50 gigawatts by 2050 to support such developments.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Google - Putnam County</span><span class="dc-meta">Google &middot; Buffalo, WV &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/softbank-eyes-10gw-data-center-at-former-doe-nuclear-enrichment-site-in-ohio/" target="_blank" rel="noopener" class="story-title">SoftBank eyes 10GW data center at former DOE nuclear enrichment site in Ohio - DCD</a>
+      <p class="story-summary">SoftBank is developing a 10GW data center campus at the Portsmouth Site, a former DOE nuclear enrichment facility in Pike County, Ohio, with construction expected to begin in 2026. SB Energy will deploy 9.2GW of natural gas generation capacity across the region to power the facility, backed by $33.3 billion in Japanese funding announced under the U.S.-Japan Strategic Trade and Investment Agreement. The data center investment could reach $30-40 billion, with SB Energy committing an additional $4.2 billion alongside AEP Ohio for transmission line upgrades in Southern Ohio to comply with grid infrastructure requirements.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">SB Energy / New Day</span><span class="dc-meta">SoftBank &middot; Piketon, OH &middot; 9 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 22, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.nj.com/news/2026/03/this-nj-farming-town-is-fighting-back-against-one-of-the-east-coasts-largest-ai-data-centers.html" target="_blank" rel="noopener" class="story-title">This N.J. farming town is fighting back against one of the East Coast's largest AI data centers</a>
+      <p class="story-summary">Vineland, New Jersey is experiencing community pushback against a 2.6 million square-foot AI data center being built by DataOne and operated by Netherlands-based Nebius Group, which has a $17 billion Microsoft deal to supply AI computing power from the site. The facility, one of the largest on the East Coast, will consume 300 megawatts of power upon completion and is already generating noise complaints from residents despite being only partially operational. Over 100 residents rallied against the project in early 2025, demanding greater transparency from city officials after the site received planning board approval in June 2024 with minimal community input. The second phase of construction, which would add more data center space plus power generation and water infrastructure, is scheduled for planning board review.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Nebius Data Center</span><span class="dc-meta">Nebius &middot; Vineland, NJ &middot; 300 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 25, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.ipm.org/news/2026-03-24/new-data-center-proposed-near-washington-ind" target="_blank" rel="noopener" class="story-title">New data center proposed near Washington, Ind. - Indiana Public Media</a>
+      <p class="story-summary">Outrigger Industrial, a Columbus, Ohio-based developer, presented preliminary plans for a 120-acre data center at the southeast corner of I-69 and US 50 near Washington, Indiana, with estimated power requirements of 250 to 500 megawatts and total infrastructure costs of $600 million to $1.25 billion. The facility is designed to attract hyperscale operators like Google, Meta, and Amazon, as well as healthcare and financial institutions, and would generate approximately $70 million in tax revenue over ten years while creating 100 to 150 well-paying jobs. The project requires updated local ordinances and utility commitments for water and sewer service before potential end-users will commit to leasing space.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Outrigger Industrial</span><span class="dc-meta">Outrigger Industrial &middot; Washington, IN &middot; 500 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">Maysville group promises lawsuit to block Mason County data center construction - WCPO</a>
+      <p class="story-summary">A Maysville-area group has announced plans to file a lawsuit to block construction of a proposed 2,080-acre data center development in rural Mason County. Data center representatives disclosed project details at a public meeting, where legal opposition to the facility was formally signaled. The lawsuit represents organized local resistance to the large-scale infrastructure project in the region.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Big Pond Data Center Development</span><span class="dc-meta">Unknown Operator &middot; Maysville, KY &middot; —</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wsls.com/video/news/2026/03/26/google-moving-forward-with-data-center-project/" target="_blank" rel="noopener" class="story-title">Google moving forward with data center project - WSLS 10</a>
+      <p class="story-summary">Google is proceeding with a data center project in Botetourt County, Virginia, marking continued infrastructure expansion in the region. The announcement, made in March 2026, indicates Google's commitment to developing computing capacity in the area, though specific details regarding investment size, power requirements, or timeline were not disclosed in the report.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Project Raspberry</span><span class="dc-meta">Google &middot; Daleville, VA &middot; 215 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/terawulf-tops-out-latest-data-center-at-lake-mariner-campus-in-new-york/" target="_blank" rel="noopener" class="story-title">TeraWulf tops out latest data center at Lake Mariner campus in New York - DCD</a>
+      <p class="story-summary">TeraWulf has topped out CB4, a 168MW data center building at its Lake Mariner campus in New York, with energization expected in Q3 2026. The facility represents part of TeraWulf's pivot from cryptomining to AI and HPC leasing, with Google-backed cloud firm Fluidstack committed to leasing 360MW across the Lake Mariner campus under two 10-year deals, and Google taking a 14 percent stake in TeraWulf. The Lake Mariner site, built on a former coal plant outside Buffalo, currently operates 500MW of capacity expandable to 750MW across six planned buildings.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 3/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Lake Mariner data center</span><span class="dc-meta">TeraWulf &middot; Barker, NY &middot; 500 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.mlive.com/news/ann-arbor/2026/03/an-entire-townships-board-could-be-removed-over-a-data-center-project-theyre-fighting-back.html" target="_blank" rel="noopener" class="story-title">An entire township's board could be removed over a data center project. They're fighting back.</a>
+      <p class="story-summary">Augusta Township, Michigan is embroiled in a legal dispute over a data center project proposed by New York City-based Thor Equities on 522 acres, with residents launching a recall petition against all seven elected township officials who approved rezoning for the development. A judge is scheduled to hear arguments in May on whether the recall petition language is valid, though state election law allows signature collection to begin April 1 regardless of the pending court decision. The township board members have filed appeals challenging the petition's clarity and accuracy, and any signatures collected before a judge's ruling could be voided if the language is deemed invalid.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 3/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Thor Equities data center</span><span class="dc-meta">Thor Equities &middot; Augusta Township, MI &middot; 893 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.thebanner.com/community/climate-environment/data-center-developer-potomac-river-power-plant-PCNVDWW62VCEJNGLZ6FSS7G5HY/" target="_blank" rel="noopener" class="story-title">Data center developer wants to reboot a Potomac River power plant with natural gas</a>
+      <p class="story-summary">TeraWulf, an Easton-based energy company, has agreed to take over the retired Morgantown Generating Station on the Potomac River in Maryland and convert it to power data centers with natural gas, targeting 1 gigawatt of generation capacity plus 500 megawatts of battery storage pending Federal Energy Regulatory Commission approval. The deal represents Maryland's attempt to address growing data center power demands by requiring operators to develop their own energy sources rather than stress the regional grid. However, the proposal faces skepticism over TeraWulf's financial viability—the company reported $661 million in losses last year and lacks nearby natural gas pipeline infrastructure—and concerns from environmental advocates that it would revive fossil fuel generation.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 3/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">TeraWulf - Morgantown Generating Station</span><span class="dc-meta">TeraWulf &middot; Newburg, MD &middot; 500 MW</span></div></div>
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">7<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/former-newspaper-building-in-kansas-city-eyed-for-20-story-data-center-development/" target="_blank" rel="noopener" class="story-title">Former newspaper building in Kansas City eyed for 20-story data center development - DCD</a>
+      <p class="story-summary">Miami-based Revitalization Unlimited is proposing to demolish the historic Western Newspaper Union Building in downtown Kansas City and replace it with a 20-story, 30MW data center equipped with natural gas fuel cells, with 18 floors dedicated to data center use and ground-floor retail. The 142,085-square-foot facility, designed by SOM, would stand 384 feet tall on the Jackson County site at 304 W. 10th Street in the Library District. The company recently acquired the property and presented the proposal to the Kansas Downtown Neighborhood Association to gather community feedback before making a final development decision. The demolition would require a special-use permit due to the building's eligibility for the city's local historic register.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 3/5</span>
+      </div>
+      <div class="dc-list"><div class="dc-row"><span class="dc-name">Western Newspaper Union Building</span><span class="dc-meta">Revitalization Unlimited &middot; Kansas City, MO &middot; 30 MW</span></div></div>
+    </div>
+    </div>
+  </section>
+  
+  <section class="nl-section">
+    <div class="section-header">
+      <h2 class="section-title">All Other Stories</h2>
+      <p class="section-subtitle">Remaining stories scoring ≥ 7/10 this week, excluding those shown above</p>
+    </div>
+    <div class="story-list">
+      
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#1</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.statenews.org/government-politics/2026-03-26/proposed-amendment-to-ban-huge-data-centers-in-ohio-can-move-to-next-step" target="_blank" rel="noopener" class="story-title">Proposed amendment to ban huge data centers in Ohio can move to next step</a>
+      <p class="story-summary">Ohio Attorney General Dave Yost certified a petition from five southwest Ohio residents proposing a statewide constitutional amendment to ban data centers consuming more than 25 megawatts monthly, clearing the way for review by the Ohio Ballot Board. The group, Ohio Residents for Responsible Development, must gather approximately 413,487 valid signatures from half of Ohio's 88 counties by July 1 to reach the November ballot, though organizers anticipate needing close to 700,000 signatures to account for invalid submissions. The Data Center Coalition opposed the amendment, arguing it would place Ohio at "a very competitive disadvantage" and deter future development, while approximately 15 Ohio communities have already enacted local moratoriums against data center construction.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#2</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.benton.org/headlines/sen-sanders-rep-ocasio-cortez-announce-ai-data-center-moratorium-act" target="_blank" rel="noopener" class="story-title">Sen Sanders, Rep Ocasio-Cortez Announce AI Data Center Moratorium Act</a>
+      <p class="story-summary">Senator Bernie Sanders and Representative Alexandria Ocasio-Cortez introduced the Artificial Intelligence Data Center Moratorium Act (S.4214), legislation that would impose a federal moratorium on construction of new AI data centers until safeguards are established regarding AI safety, worker benefits from AI gains, and environmental protections including electricity and utility costs. The proposed moratorium aims to slow AI development and allow policymakers time to establish regulatory frameworks before new data center infrastructure development proceeds.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#3</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 23, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">10<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/nextera-gets-federal-approval-to-build-10gw-of-natural-gas-power-in-texas-and-pennsylvania-for-data-centers/" target="_blank" rel="noopener" class="story-title">NextEra gets federal approval to build 10GW of natural gas power in Texas and ...</a>
+      <p class="story-summary">NextEra Energy has secured US federal approval to develop 10GW of natural gas generation capacity across Texas and Pennsylvania specifically to serve surging data center demand, with projects valued at $33 billion combined: a 4.3GW facility in Southwest Pennsylvania ($17 billion) feeding the PJM Interconnection and a 5.2GW facility in Anderson County, Texas ($16 billion) serving the ERCOT market. The development is tied to Japan's $550 billion investment commitment to the US and will be jointly owned by both nations under a bilateral trade agreement, with NextEra building and operating the plants as part of its hub strategy to rapidly scale generation for hyperscale customers. NextEra is pursuing approximately 15GW of new generation for data center hubs by 2035 and currently has 20GW of interest from large load users.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 5/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#4</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e1a1a;border-color:#E74C3C;color:#e74c3c">Power & Utilities</span>
+          <span class="pub-date">Mar 22, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">9<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.post-gazette.com/business/powersource/2026/03/22/electric-power-superhighway-pennsylvania-data-center-west-virginia/stories/202603220051" target="_blank" rel="noopener" class="story-title">Electric power 'superhighway' proposed to cut across 200 miles of southwestern and Central Pa.</a>
+      <p class="story-summary">A proposed extra-high voltage transmission line would span 200 miles across southwestern and Central Pennsylvania, connecting West Virginia to an emerging data center corridor in Eastern Pennsylvania to support growing electricity demand from AI and data center expansion. The project represents infrastructure investment driven by the region's positioning as a data center hub, though it is expected to face significant opposition from landowners concerned about right-of-way acquisition and environmental impacts. The transmission line would support the power requirements needed to compete with international data center and AI infrastructure development.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 5/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#5</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 21, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.wsls.com/news/local/2026/03/20/four-data-center-bills-await-governors-signature-as-southwest-virginia-projects-spark-debate/" target="_blank" rel="noopener" class="story-title">Four data center bills await governor's signature as Southwest Virginia projects spark debate - WSLS</a>
+      <p class="story-summary">Four data center regulatory bills are awaiting Governor Spanberger's signature in Virginia as Southwest Virginia communities express concerns about proposed facilities, including a major Google data center project in Botetourt County and a $73 billion investment proposal in Pittsylvania County. The legislation includes Senate Bill 553, which would mandate transparency on water usage reporting; requirements for site assessments, noise studies, and environmental impact reviews before local approval; and a provision requiring Tier Four generators or environmental equivalents for new facilities. Lawmakers cite constituent concerns about data center proximity to schools and homes, along with impacts to local water supplies, noise pollution, and public health. Virginia data center tax exemptions could cost the state $1.9 billion annually, adding fiscal pressure to the regulatory debate.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#6</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#261a3a;border-color:#9B59B6;color:#a569bd">Hyperscaler Strategy</span>
+          <span class="pub-date">Mar 22, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.cnbc.com/2026/03/22/openai-data-center-pivot-underscores-wall-street-ipo-concerns.html" target="_blank" rel="noopener" class="story-title">OpenAI's data center pivot underscores Wall Street spending concerns ahead of IPO</a>
+      <p class="story-summary">OpenAI is moderating its infrastructure spending strategy ahead of a potential IPO, shifting from aggressive data center development to purchasing cloud capacity as a major buyer rather than builder, after facing operational challenges including weather disruptions at its Abilene, Texas facility supporting the $500 billion Stargate joint project with Oracle and SoftBank. The company, valued at $730 billion following recent funding including $50 billion from Amazon, is demonstrating greater fiscal discipline to satisfy public market investors who question the company's historically aggressive growth spending despite continued compute constraints limiting its product offerings.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#7</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2e2a;border-color:#1ABC9C;color:#1abc9c">Fiber & Network Infrastructure</span>
+          <span class="pub-date">Mar 22, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://dailystandard.com/archive/2026-03-21/stories/54462/planned-data-corridor-will-pass-through-mercer-county" target="_blank" rel="noopener" class="story-title">Planned data corridor will pass through Mercer County | The Daily Standard Stories</a>
+      <p class="story-summary">Zayo Group, a Denver-based fiber infrastructure company, received permits from Mercer County Commissioners to install underground fiber-optic cabling along two road segments as part of its Chicago-to-Columbus long-haul fiber route, one of five new routes announced in January 2025 totaling over 5,000 miles to support AI data center connectivity. The installation will use directional boring and open trench methods across Mercer Road and Celina Mendon Road, with Zayo required to post a $250,000 bond and submit to county-appointed inspection at $88.30 per hour to mitigate risks to existing subsurface drainage infrastructure. The project is expected to take between three to six months to complete.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#8</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a1e;border-color:#27AE60;color:#2ecc71">Technology & Architecture</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://mashable.com/article/google-ai-compression" target="_blank" rel="noopener" class="story-title">Google AI compression technology saves data center energy | Mashable</a>
+      <p class="story-summary">Google unveiled TurboQuant, a compression algorithm that reduces large language model memory usage by up to six times, enabling more efficient data center operations and potentially reducing energy consumption and infrastructure demands. The technology allows AI models to run with significantly less computational resources, addressing power generation and transmission constraints that have slowed the industry's data center expansion plans. By improving AI efficiency, TurboQuant could reduce the need for new data center builds, which currently face delays from permitting, environmental opposition, and power infrastructure limitations.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#9</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#1a2a3a;border-color:#3498DB;color:#5dade2">Data Center Development</span>
+          <span class="pub-date">Mar 27, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="https://www.datacenterdynamics.com/en/news/us-army-taps-carlyle-and-cyrusone-to-develop-data-centers-on-army-owned-land/" target="_blank" rel="noopener" class="story-title">US Army taps Carlyle and CyrusOne to develop data centers on Army-owned land - DCD</a>
+      <p class="story-summary">The US Army has conditionally selected Carlyle to develop a data center on 1,384 acres at Fort Bliss in Texas and CyrusOne to develop one on 1,201 acres at Dugway Proving Ground in Utah, with expected operational dates of 2027 and 2029 respectively. Both companies will handle financing, construction, operation, and maintenance at no upfront cost to taxpayers under a White House executive order enabling military departments to lease non-excess property. The projects support the Army's AI infrastructure strategy and are currently in exclusive negotiation to finalize lease terms.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    <div class="story-card">
+      <div class="card-header">
+        <span class="rank">#10</span>
+        <div class="card-meta">
+          <span class="cat-badge" style="background:#2e2010;border-color:#E67E22;color:#e67e22">Regulatory & Community Pushback</span>
+          <span class="pub-date">Mar 23, 2026</span>
+        </div>
+        <div class="score-pill">
+          <span class="score-label">Score</span>
+          <span class="score-value">8<span class="score-max">/10</span></span>
+        </div>
+      </div>
+      <a href="nan" target="_blank" rel="noopener" class="story-title">$3B data center planned on 452 acres in Appomattox County sparking community pushback</a>
+      <p class="story-summary">A $3 billion data center project proposed for 452 acres in Appomattox County, Virginia is facing community opposition as the state continues to establish itself as a global data center hub with increasing cloud storage facility development across its region.</p>
+      <div class="card-footer">
+        <span class="score-breakdown">Strategy: 4/5 &nbsp;&middot;&nbsp; Relevance: 4/5</span>
+      </div>
+      
+    </div>
+    </div>
+  </section>
+</main>
+
+<footer class="nl-footer">
+  <div class="footer-inner">
+    <span class="footer-brand">LightSignal</span>
+    <span class="footer-meta">Generated March 27, 2026 at 11:30 AM &nbsp;&middot;&nbsp; Lightpath Strategic Intelligence</span>
+  </div>
+</footer>
+
+</body>
+</html>
