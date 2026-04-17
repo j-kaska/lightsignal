@@ -712,5 +712,42 @@ def main():
     log.info("=" * 60)
 
 
+def generate_newsletter(end_date=None):
+    """Callable entry point for use by run_all.py (no argparse)."""
+    from datetime import datetime as _dt
+    if end_date is None:
+        end_dt = _dt.today()
+    elif isinstance(end_date, str):
+        end_dt = _dt.strptime(end_date, "%Y-%m-%d")
+    else:
+        end_dt = end_date
+
+    log.info("=" * 60)
+    log.info("LightSignal Newsletter Generator")
+    log.info(f"End date: {end_dt.date()}")
+    log.info("=" * 60)
+
+    df        = load_articles(end_dt)
+    dc_lookup = load_dc_lookup()
+
+    if df.empty:
+        log.warning("No articles found in the 7-day window. Newsletter will show empty sections.")
+
+    dc_stories    = get_dc_stories(df)
+    other_stories = get_other_stories(df, dc_stories)
+    html          = build_html(dc_stories, other_stories, dc_lookup, end_dt)
+
+    OUTPUT_NEWSLETTERS_DIR.mkdir(parents=True, exist_ok=True)
+    filename    = f"LightSignal_Weekly_{end_dt.strftime('%Y-%m-%d')}.html"
+    output_path = OUTPUT_NEWSLETTERS_DIR / filename
+    output_path.write_text(html, encoding="utf-8")
+
+    log.info("=" * 60)
+    log.info(f"Newsletter saved: {output_path}")
+    log.info(f"  DC stories:    {len(dc_stories)}")
+    log.info(f"  Other stories: {len(other_stories)}")
+    log.info("=" * 60)
+
+
 if __name__ == "__main__":
     main()

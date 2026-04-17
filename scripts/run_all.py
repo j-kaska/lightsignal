@@ -192,6 +192,16 @@ def _load_script(name, folder="kml"):
     spec.loader.exec_module(mod)
     return mod
 
+def run_newsletter():
+    log.info("  Running generate_newsletter...")
+    import importlib.util, sys as _sys
+    path = ROOT / "scripts" / "generate_newsletter.py"
+    spec = importlib.util.spec_from_file_location("generate_newsletter", path)
+    mod  = importlib.util.module_from_spec(spec)
+    _sys.modules["generate_newsletter"] = mod
+    spec.loader.exec_module(mod)
+    mod.generate_newsletter()
+
 def run_kepler_build():
     log.info("  Running build_deckgl...")
     _load_script("build_deckgl").build_deckgl()
@@ -298,6 +308,7 @@ def main():
 
     # ── Stage 4: Build Outputs ────────────────────────────────────────────────
     stage(4, "Build Outputs")
+    run_stage("Newsletter",   run_newsletter)
     run_stage("Kepler Build", run_kepler_build)
     run_stage("DC KMZ",       run_dc_kmz_build)
 
